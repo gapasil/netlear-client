@@ -1,0 +1,331 @@
+@import "../../App.scss";
+
+.events-page {
+  width: 100%;
+  background-color: $milk;
+  // background: url("../../assets/img/slider/events_page.jpg") no-repeat;
+  z-index: 1;
+  .categories {
+    &__nav {
+      max-height: 410px;
+      direction: ltr;
+    }
+    &__list {
+      margin-left: 30px;
+    }
+  }
+  .categories__item:hover .categories__link {
+    font-size: 38px;
+  }
+  .nav__item {
+    margin-bottom: 20px !important;
+    line-height: 150%;
+    cursor: pointer;
+    user-select: none;
+  }
+  .nav__link {
+    color: $dark;
+  }
+  .lr__form_radio {
+    margin-right: 60px;
+    [type="radio"]:checked + label,
+    [type="radio"]:not(:checked) + label {
+      padding-left: 50px;
+      color: $light-grey;
+      font-size: 18px;
+    }
+    [type="radio"]:checked + label:before,
+    [type="radio"]:not(:checked) + label:before {
+      background-color: $light;
+    }
+    div {
+      font-size: 24px;
+      line-height: 1;
+      color: $light;
+      margin-bottom: 10px;
+    }
+  }
+  .events-type__item:nth-last-child(1) {
+    .lr__form_radio {
+      margin-right: 0px !important;
+    }
+  }
+  h1 {
+    font-weight: bold;
+    font-size: 64px;
+    line-height: 116%;
+    color: $light;
+    margin-bottom: 20px;
+  }
+  h2 {
+    font-weight: bold;
+    font-size: 48px;
+    line-height: 116%;
+    color: $light;
+    margin: 20px 0;
+  }
+  p {
+    width: 40vw;
+    font-size: 24px;
+    line-height: 150%;
+    color: $light;
+    margin-bottom: 50px;
+  }
+}
+
+.events {
+  &__page {
+    width: 100vw;
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    transition: all 0.4s;
+  }
+  &__left {
+    display: flex;
+    flex-direction: column;
+    max-width: 60vw;
+    padding: 22vh 0 10vh 6vw;
+  }
+  &__right {
+    display: flex;
+    flex-direction: column;
+    max-width: 40vw;
+    justify-content: space-between;
+    align-items: flex-end;
+    padding: 22vh 0 0 0;
+    background-color: $light;
+  }
+  &__title {
+    display: flex;
+    flex-direction: row;
+    width: 95%;
+    align-items: center;
+    justify-content: space-between;
+    span {
+      font-size: 24px;
+      color: $light;
+      font-weight: normal;
+      opacity: 0.8;
+      white-space: nowrap;
+      margin-left: 20px;
+    }
+  }
+  &__specialist {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-end;
+    width: 100%;
+    transition: 0.4s;
+    opacity: 0;
+    visibility: hidden;
+    &_info {
+      max-width: 50%;
+      min-width: 250px;
+      height: 230px;
+      position: relative;
+      font-size: 24px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 33px 40px;
+      background-color: #2428a6;
+      color: $light;
+      line-height: 142%;
+      span:nth-of-type(1) {
+        font-weight: bold;
+        font-size: 24px;
+      }
+      span:nth-of-type(2) {
+        font-size: 22px;
+        margin-bottom: 10px;
+      }
+      span:nth-of-type(2) {
+        font-size: 18px;
+      }
+      span:nth-of-type(3) {
+        color: $light-grey;
+        font-size: 18px;
+      }
+    }
+    &_img {
+      position: relative;
+      max-width: 50%;
+      min-width: 250px;
+      display: flex;
+      align-items: flex-end;
+      img {
+        position: relative;
+        width: 100%;
+        height: auto;
+        bottom: 0;
+      }
+    }
+    &--active {
+      opacity: 1;
+      visibility: visible;
+    }
+  }
+  &__list {
+    font-size: 24px;
+    line-height: 116%;
+    color: $light;
+  }
+  &__text {
+    display: flex;
+    flex-direction: column;
+    min-height: 0px;
+    max-height: 250px;
+    margin-bottom: 50px;
+    overflow-y: scroll;
+    direction: rtl;
+    width: 40vw;
+    &::-webkit-scrollbar {
+      /* 1 - скроллбар */
+      background-color: transparent;
+      width: 6px;
+      border-radius: 3px;
+    }
+    &::-webkit-scrollbar-thumb {
+      /* 5 - ползунок */
+      background-color: #0080ff;
+      border-radius: 3px;
+    }
+    &::-webkit-scrollbar-track {
+      outline: 2px solid #c4c4c4;
+      outline-offset: -3px;
+      border-radius: 3px;
+    }
+  }
+  &__description {
+    font-size: 24px;
+    line-height: 150%;
+    font-weight: 400;
+    color: $light;
+    position: relative;
+    margin-left: 30px;
+    direction: ltr;
+    p {
+      margin-bottom: 0;
+      width: 100%;
+    }
+  }
+  &-type {
+    &__list {
+      list-style: none;
+      display: flex;
+      flex-direction: row;
+    }
+  }
+}
+
+@media (max-width: 1800px) {
+  .events-page {
+    h1 {
+      font-size: 52px;
+      margin-bottom: 15px;
+    }
+    h2 {
+      font-size: 42px;
+      margin: 10px 0 15px 0;
+    }
+  }
+  .events__left {
+    padding-bottom: 7vh;
+  }
+  .events__text {
+    margin-bottom: 30px;
+  }
+}
+@media (max-width: 1650px) {
+  .events-page {
+    h1 {
+      font-size: 48px;
+      margin-bottom: 10px;
+    }
+    h2 {
+      font-size: 38px;
+      margin: 0 0 10px 0;
+    }
+    .lr__form_radio {
+      margin-right: 50px;
+    }
+  }
+  .events__left {
+    padding-bottom: 5vh;
+  }
+}
+@media (max-width: 1300px) {
+  .events__title {
+    span {
+      font-size: 20px;
+    }
+  }
+  .events-page {
+    p {
+      font-size: 20px;
+    }
+    h1 {
+      font-size: 38px;
+      margin-bottom: 0px;
+    }
+    h2 {
+      font-size: 30px;
+      margin: 0 0 10px 0;
+    }
+    .lr__form_radio {
+      margin-right: 30px;
+    }
+    .lr__form_radio [type="radio"]:checked + label,
+    .lr__form_radio [type="radio"]:not(:checked) + label {
+      padding-left: 40px;
+    }
+  }
+}
+@media (max-width: 1100px) {
+  .events-page {
+    .lr__form_radio {
+      margin-right: 20px;
+    }
+  }
+}
+@media (max-width: 1000px) {
+  .events__title {
+    span {
+      font-size: 18px;
+    }
+  }
+  .events-page {
+    p {
+      font-size: 18px;
+    }
+    h1 {
+      font-size: 32px;
+    }
+    h2 {
+      font-size: 28px;
+    }
+    .lr__form_radio [type="radio"]:checked + label,
+    .lr__form_radio [type="radio"]:not(:checked) + label {
+      padding-left: 30px;
+      font-size: 12px;
+    }
+    .lr__form_radio {
+      div {
+        font-size: 20px;
+      }
+    }
+  }
+}
+@media (max-width: 850px) {
+  .events-page {
+    h1 {
+      font-size: 28px;
+    }
+    h2 {
+      font-size: 24px;
+    }
+  }
+}

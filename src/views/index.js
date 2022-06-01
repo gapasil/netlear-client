@@ -1,0 +1,12 @@
+export { default as HomePage } from "./HomePage/HomePage";
+export { default as LoginPage } from "./AuthForms/LoginPage/LoginPage";
+export { default as RegPage } from "./AuthForms/RegPage/RegPage";
+export { default as AskQuestionPage } from "./AskQuestionPage/AskQuestionPage";
+export { default as SpecialistsPage } from "./SpecialistsPage/SpecialistsPage";
+export { default as EventsPage } from "./EventsPage/EventsPage";
+export { default as EventPage } from "./EventPage/EventPage";
+export { default as EditUserProfile } from "./EditUserProfile/EditUserProfile";
+export { default as UserProfile } from "./UserProfile/UserProfile";
+export { default as AuthGoogleToken } from "./AuthGoogleToken/AuthGoogleToken";
+export { default as AuthFacebookToken } from "./AuthFacebookToken/AuthFacebookToken";
+export { default as AuthCheckKey } from "./AuthCheckKey/AuthCheckKey";

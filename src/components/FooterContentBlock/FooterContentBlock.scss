@@ -1,0 +1,51 @@
+@import '../../scss/abstract/mixins.scss';
+@import '../../scss/base/constants.scss';
+
+.footer-content-block {
+  @include media-mobile {
+    margin: 0 0px 25px;
+  }
+  &__title {
+    margin-bottom: 50px;
+    font-size: 16px;
+    color: $color-text-primary;
+    @include media-mobile {
+      margin-bottom: 10px;
+    }
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+  }
+  &__item {
+    align-items: center;
+    margin-bottom: 15px;
+    transition: 0.3s;
+    &:hover {
+      color: $color-text-hovered;
+      a {
+        color: $color-text-hovered;
+      }
+    }
+
+    span {
+      margin-right: 15px;
+      color: $color-text-primary;
+    }
+    a {
+      margin: 0;
+      color: $color-text-dark-s;
+    }
+
+    &_colored {
+      color: $color-primary;
+      text-decoration: underline;
+      font-weight: bold;
+      // a {
+      //   color: $color-primary;
+      //   text-decoration: underline;
+      // }
+    }
+  }
+}

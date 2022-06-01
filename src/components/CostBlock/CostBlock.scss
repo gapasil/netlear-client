@@ -1,0 +1,100 @@
+@import '../../scss/abstract/mixins.scss';
+@import '../../scss/base/constants.scss';
+
+.event-page-cost {
+  &__fully {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #ebebeb;
+    padding-bottom: 15px;
+    p {
+      margin: 0;
+    }
+  }
+  &__text {
+    font-weight: 600;
+
+    &_light {
+      color: $color-text-dark-s;
+    }
+
+    &_active {
+      color: $color-text-hovered-dark;
+    }
+  }
+  &__currencies-block {
+    display: flex;
+    flex-direction: column;
+    text-align: end;
+  }
+  &__payment-block {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+  }
+}
+
+.currency {
+  font-weight: 800;
+  &__numeric {
+    font-size: 28px;
+    margin-right: 5px;
+  }
+  &__type {
+  }
+}
+
+.payment-selection {
+  @include media-mobile {
+    width: 100%;
+  }
+  &__item {
+    display: flex;
+    margin-bottom: 5px;
+  }
+}
+
+.payment-item {
+  cursor: pointer;
+  &__line {
+    background-color: $color-text-dark-s;
+    width: 5px;
+    margin-right: 15px;
+    &_active {
+      background-color: $color-text-hovered-dark;
+      width: 5px;
+      margin-right: 15px;
+    }
+  }
+  &__content {
+    margin-top: 5px;
+  }
+  &__currencies-block {
+    display: flex;
+    color: $color-text-hovered-dark;
+    span {
+    }
+  }
+  &__number {
+    font-weight: 700;
+    margin-right: 5px;
+  }
+  &__text {
+    &_light {
+      color: $color-text-dark-s;
+    }
+  }
+}
+
+.payment-item-currency {
+  margin-right: 5px;
+
+  &__numeric {
+    margin-right: 2px;
+    font-weight: 600;
+  }
+  &__type {
+    font-size: 14px;
+  }
+}

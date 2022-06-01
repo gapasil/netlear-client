@@ -1,0 +1,25 @@
+@import '../../scss/base/constants.scss';
+@import '../../scss/abstract/mixins.scss';
+
+.check-key-page {
+  background-color: $color-primary-light;
+  margin: 35px 0;
+  padding: 50px 2.5%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  &__message {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 16px;
+    color: $color-text-primary;
+    p {
+      margin: 0;
+    }
+  }
+}

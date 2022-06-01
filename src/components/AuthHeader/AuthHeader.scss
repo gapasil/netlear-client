@@ -1,0 +1,23 @@
+@import '../../scss/abstract/mixins.scss';
+@import '../../scss/base/constants.scss';
+
+.register__header {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  @include media-mobile {
+    width: 100%;
+  }
+}
+
+.button--social {
+  background: transparent;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  margin-right: 10px;
+  img {
+    width: 30px;
+    height: 30px;
+  }
+}

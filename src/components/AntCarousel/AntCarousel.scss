@@ -1,0 +1,82 @@
+@import "../../scss/abstract/mixins.scss";
+@import "../../scss/base/constants.scss";
+
+.slider {
+  width: 100%;
+  &__slide {
+    position: relative;
+  }
+  &__item {
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    width: 100%;
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    transition: 0.4s !important;
+    @include media-mobile {
+      background-position: bottom;
+    }
+    h2 {
+      color: white;
+      font-weight: 700;
+      font-size: 56px;
+      line-height: 116%;
+      @include media-mobile {
+        font-size: 32px;
+        line-height: 1.3;
+      }
+    }
+    h3 {
+      width: 80%;
+      color: white;
+      font-size: 26px;
+      @include media-mobile {
+        font-size: 20px;
+        line-height: 1.3;
+      }
+    }
+
+    &_shadow {
+      background: linear-gradient(
+        180deg,
+        rgba(2, 2, 27, 0.6) 0%,
+        rgba(2, 2, 27, 0.6) 100%
+      );
+      top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0;
+      position: absolute;
+    }
+  }
+  &__text {
+    max-width: 50%;
+    margin-right: auto;
+    margin-left: 5vw;
+    margin-top: 35vh;
+    z-index: 99;
+    transition: all 0.3s;
+    &--active {
+      width: 0;
+      opacity: 0;
+      margin-left: 0vw;
+    }
+    @include media-tablet {
+      margin-left: 30px;
+    }
+    // margin-left: 30px;
+  }
+}
+
+@media (max-width: 1600px) {
+  .slider {
+    &__item {
+      h2 {
+        font-weight: 500;
+      }
+    }
+  }
+}

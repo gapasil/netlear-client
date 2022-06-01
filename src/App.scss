@@ -1,0 +1,51 @@
+@import "./scss/abstract/mixins.scss";
+@import "./scss/base/constants.scss";
+@import "./fonts/iconsfontVariables.scss";
+@import url("https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+:root {
+  --light: #ffffff;
+  --dark: #161616;
+  --dark-blue: #020547;
+  --light-grey: #99a7c1;
+  --grey: #a9a9a9;
+  --dark-grey: #24292f;
+  --blue: #0005a0;
+  --light-blue: #0080ff;
+  --milk: #f1f5f6;
+}
+
+$light: var(--light);
+$dark: var(--dark);
+$dark-blue: var(--dark-blue);
+$light-grey: var(--light-grey);
+$grey: var(--grey);
+$dark-grey: var(--dark-grey);
+$blue: var(--blue);
+$light-blue: var(--light-blue);
+$milk: var(--milk);
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+p {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.App {
+  font-family: Helvetica, sans-serif !important;
+  background-color: #ffffff;
+  display: flex;
+  justify-content: center;
+  font-size: 16px;
+}
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}

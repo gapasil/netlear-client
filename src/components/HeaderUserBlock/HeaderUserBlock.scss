@@ -1,0 +1,68 @@
+@import '../../scss/abstract/mixins.scss';
+@import '../../scss/base/constants';
+
+.header {
+  &__buttons-block {
+    // width: 225px;
+    display: flex;
+    justify-content: space-between;
+    & > * {
+      margin-right: 32px;
+    }
+    @include media-tablet {
+      flex-direction: column;
+      align-items: center;
+      & > * {
+        margin-right: 15px;
+        margin-bottom: 10px;
+      }
+    }
+    @include media-mobile {
+      width: auto;
+      & > * {
+        margin-right: 0px;
+      }
+    }
+  }
+}
+.avatar-item {
+  margin-right: 24px;
+}
+
+[class*='-col-rtl'] .avatar-item {
+  margin-right: 0;
+  margin-left: 24px;
+}
+
+.ant-dropdown-link {
+  display: flex;
+  align-items: center;
+}
+
+.user-ico {
+  margin-left: 10px;
+}
+
+.ant-dropdown-menu-item {
+  padding: 10px 40px;
+  &:hover {
+    color: $color-text-hovered-dark;
+  }
+}
+
+.button-img {
+  height: 20px;
+  margin-right: 5px;
+}
+
+.flag-img {
+  width: 16px;
+  height: auto;
+}
+
+.ant-user-dropdown-link {
+  margin-right: 20px;
+  @include media-mobile {
+    margin: 0 0 10px;
+  }
+}

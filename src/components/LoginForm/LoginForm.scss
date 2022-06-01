@@ -1,0 +1,160 @@
+@import "../../App.scss";
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  font-size: 18px;
+  font-weight: 400;
+  .button {
+    margin-bottom: 40px;
+    span {
+      font-size: 18px;
+      line-height: 100%;
+      font-weight: 700 !important;
+    }
+  }
+  .lr__form {
+    &_button {
+      width: 100% !important;
+      height: 50px !important;
+    }
+  }
+}
+
+.login__form {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px 140px 20px 140px;
+}
+
+.lr__form {
+  &_div {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+  }
+  &_input {
+    min-width: 270px;
+    color: $dark-blue;
+    line-height: calc(122% + 26px);
+    outline: none;
+    border: none;
+    border-bottom: 1px solid $dark-blue;
+    transition: 0.6s;
+    margin-bottom: 13px;
+    &::placeholder {
+      transition: 0.6s;
+      color: $dark-blue;
+    }
+  }
+
+  &_checkbox {
+    #checkbox,
+    #checkbox1 {
+      display: none;
+    }
+    label {
+      display: inline-block;
+      cursor: pointer;
+      position: relative;
+      padding-left: 44px;
+      font-size: 14px;
+      line-height: 157%;
+      color: $dark-blue;
+      margin-bottom: 40px;
+      margin-top: 20px;
+      transition: 0.4s;
+      user-select: none;
+    }
+    label:before {
+      content: "";
+      display: inline-block;
+
+      width: 24px;
+      height: 24px;
+
+      margin-right: 10px;
+      position: absolute;
+      left: 0;
+      bottom: 1px;
+      background-color: $light;
+      box-shadow: 0px 4px 8px rgba(28, 37, 44, 0.08);
+      border-radius: 5px;
+    }
+    input[type="checkbox"]:checked + label:before {
+      content: "\2713";
+      text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
+      color: #0080ff;
+      text-align: center;
+      line-height: 24px;
+      font-weight: bold;
+    }
+  }
+
+  &_forgot {
+    position: absolute;
+    cursor: pointer;
+    user-select: none;
+    right: 0;
+    color: $grey;
+    line-height: calc(122% + 26px);
+  }
+}
+
+.login {
+  &__span {
+    color: $dark-blue;
+    margin: 0 auto;
+    line-height: 122%;
+    margin-bottom: 22px;
+  }
+  &__registration_btn {
+    cursor: pointer;
+    color: $light-blue;
+    transition: color 0.4s;
+    &:hover {
+      color: $blue;
+    }
+  }
+}
+
+.continue-with {
+  &__list {
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 120px;
+    margin-bottom: 50px;
+  }
+  &__item {
+    cursor: pointer;
+    position: relative;
+    display: block;
+    width: 45px;
+    height: 45px;
+    color: $light;
+    background-color: $light-blue;
+    font-size: 18px;
+    text-decoration: none;
+    border-radius: 50%;
+    opacity: 1;
+    transition: transform 0.4s ease 0.2s;
+    &::before {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+    &:hover {
+      -webkit-transform: translateY(-5px);
+      transform: translateY(-5px);
+    }
+    &:nth-child(2n + 1) {
+      background-color: $blue;
+    }
+  }
+}

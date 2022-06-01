@@ -1,0 +1,72 @@
+@import '../../scss/abstract/mixins.scss';
+@import '../../scss/base/constants.scss';
+
+.payment-card {
+  display: flex;
+  flex-direction: column;
+  border-bottom: 1px solid #dcdacb;
+  box-sizing: border-box;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+  transition: all 0.3s;
+  border-radius: 4px;
+  max-width: 550px;
+  //   height: 360px;
+  margin: 25px 0px;
+  padding: 30px;
+  &:hover {
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+  }
+
+  &__cost-block {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+
+  &__cost {
+    margin: 0 15px 0 0;
+    font-size: 32px;
+    font-weight: 700;
+  }
+  &__full-cost {
+    color: $color-text-dark;
+    text-decoration: line-through;
+    margin-right: 15px;
+  }
+
+  &__sale {
+    color: $color-text-dark;
+  }
+
+  &__pay-now-button {
+    margin-bottom: 10px;
+  }
+
+  &__course-includes-block {
+    margin-bottom: 10px;
+  }
+
+  &__coupon-block {
+    display: flex;
+  }
+}
+
+.course-includes-block {
+  &__title {
+    font-weight: 600;
+  }
+  &__content {
+  }
+  &__item {
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+    span {
+      margin-right: 10px;
+    }
+    p {
+      margin: 0;
+    }
+  }
+}
