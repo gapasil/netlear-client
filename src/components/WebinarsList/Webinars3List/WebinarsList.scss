@@ -1,0 +1,140 @@
+@import '../../../scss/abstract/mixins.scss';
+@import '../../../scss/base/constants';
+
+.block {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  &__item{
+    width: 40%;
+    min-width: 315px;
+    margin-left: 15px;
+    margin-right: 15px;
+  } 
+  width: 100%;
+  margin-left: 15px;
+  margin-right: 15px;
+}
+[data-theme='compact'] .site-collapse-custom-collapse .site-collapse-custom-panel,
+.site-collapse-custom-collapse .site-collapse-custom-panel {
+  margin-bottom: 24px;
+  overflow: hidden;
+  background: #f7f7f7;
+  border: 0px;
+  border-radius: 2px;
+  font-size: 16px;
+}
+
+.ant-collapse-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  span {
+    order: 1;
+  }
+  @include media-mobile {
+    padding: 0 !important;
+  }
+}
+
+.webinars-item {
+  &__header {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    @include media-mobile {
+      flex-direction: column;
+      width: 90%;
+    }
+  }
+
+  &__left-block {
+    width: 25%;
+    position: relative;
+    @include media-mobile {
+      width: 100%;
+      margin-bottom: 10px;
+    }
+    img {
+      width: 100%;
+      border-radius: 5px;
+    }
+  }
+
+  &__right-block-header {
+    @include media-mobile {
+      font-size: 15px;
+    }
+  }
+
+  &__right-block {
+    width: 75%;
+    color: $color-text-dark;
+    @include media-mobile {
+      width: 100%;
+      margin-bottom: 10px;
+    }
+
+    &_strong {
+      font-weight: 900;
+      @include media-mobile {
+        margin-left: 0 !important;
+      }
+    }
+    &_prime {
+      color: $color-text-dark-s;
+    }
+    &_filled-paid {
+      background-color: $color-text-hovered;
+      color: $color-text-light;
+      padding: 1px 3px;
+      border-radius: 3px;
+    }
+    &_filled-free {
+      background-color: $color-text-hovered-free;
+      color: $color-text-light;
+      padding: 1px 3px;
+      border-radius: 3px;
+    }
+    span {
+      margin-left: 15px;
+    }
+    div {
+      margin-left: 15px;
+      @include media-mobile {
+        margin-left: 0;
+      }
+    }
+  }
+}
+
+.webinars-player {
+  @include media-mobile {
+    width: auto !important;
+    height: auto !important;
+  }
+}
+
+.webinars-list {
+  &__add-item {
+  }
+}
+
+.ant-timeline-item-content {
+  @include media-mobile {
+    margin: 0 0 0 7px;
+    .time-line-date {
+      padding-left: 20px;
+    }
+  }
+}
+
+.anticon {
+  @include media-mobile {
+    margin: 0;
+  }
+}
+
+.ant-timeline-item-head-custom {
+  background-color: transparent;
+}

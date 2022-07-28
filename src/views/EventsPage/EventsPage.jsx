@@ -2,15 +2,21 @@ import React, { useState, useEffect } from "react";
 import "./EventsPage.scss";
 import Button from "../../components/Button/Button";
 import { Carousel } from "antd";
-import { useHistory, Link } from "react-router-dom";
+import { useHistory, Link, NavLink } from "react-router-dom";
 import eventsPageImg from "../../assets/img/slider/events_page.jpg";
 import annaImg from "../../assets/img/slider/events_page_anna.jpg";
 import defaultPhoto from "../../assets/img/eventsPage/sanitar.png";
 import { MenuData } from "../AskQuestionPage/MenuData";
 import { EventsData } from "./EventsData";
+import TextEditor from "../../components/TextEditor/TextEditor";
+import { useDispatch } from "react-redux";
+import { setCoorseRedux } from "../../redux/actions/eventRedactor/eventRedactor";
+import { url } from "../../conf";
 
 function EventsPage() {
   const [events, setEvents] = useState({ type: "", event: "", firstEvent: "" });
+  const [masCoorse, setCoorse]  = useState([])
+  const dispatch = useDispatch();
   const [listItemClass, setListItemClass] = useState({
     previousItem: null,
   });
@@ -29,6 +35,16 @@ function EventsPage() {
     });
   };
 
+  // useEffect(()=>{
+  //   fetch(`${url}post/`,{
+  //       headers: {
+  //         "Authorization": `Bearer ${localStorage.getItem("token")}`
+  //       },
+  //   })
+  //   .then((res)=>res.json())
+  //   .then((result)=>setCoorse(result))
+  // },[])
+
   return (
     <div className="events-page">
       <div className="slider">
@@ -46,10 +62,10 @@ function EventsPage() {
                 backgroundImage: `url(${eventsPageImg})`,
               }}
             >
-              <div className="events__page">
+          <div className="events__page">
                 <div className="events__left">
-                  <h1>Предстоящие мероприятия</h1>
-                  <ul className="events-type__list">
+                  <h1>Предстоящие мероприятия:</h1>
+                  {/* <ul className="events-type__list">
                     <li className="events-type__item">
                       <div className="lr__form_radio">
                         <input
@@ -89,44 +105,48 @@ function EventsPage() {
                         </label>
                       </div>
                     </li>
-                  </ul>
+                  </ul> */}
                   {events.event ? (
                     <>
                       <div className="events__title">
-                        <h2>{events.event.title}</h2>
-                        <span>{events.event.date}</span>
+                        <h2>{events.event.mainTitle}</h2>
+                        <p>{`В курсе ${events.event.vebinars.length}: вебинаров`}</p>
                       </div>
                       <div className="events__text">
                         <div className="events__description">
-                          {events.event.description}
+                          <TextEditor
+          
+                            value={events.event.aboutCourse.paragraph}>
+
+                          </TextEditor>
                         </div>
                       </div>
-                      <Button
-                        text={`Участвую${
-                          events.event.cost ? `, ${events.event.cost}` : ""
-                        }`}
-                        className="button-light"
-                      />
+                        <NavLink
+                          to={'/pagecoorse/' + events.event._id}
+                        >
+                          {`Участвую ${events.event.fullCoursePayCard.cost}${events.event.fullCoursePayCard.currency}`}
+                        </NavLink>
+                      <p>{`Цена за весь курс: ${events.event.fullCoursePayCard.cost}${events.event.fullCoursePayCard.currency}`}</p>
                     </>
                   ) : events.type ? (
                     <>
                       <div className="events__title">
-                        <h2>{events.firstEvent?.title}</h2>
-                        <span>{events.firstEvent?.date}</span>
+                        <h2>{events.event.mainTitle}</h2>
+                        <p>{`В курсе ${events.event.vebinars.length}: вебинаров`}</p>
                       </div>
                       <div className="events__text">
                         <div className="events__description">
-                          {events.firstEvent?.description}
+                        <TextEditor
+                          value={events.event.aboutCourse.paragraph}>
+
+                        </TextEditor>
                         </div>
                       </div>
-                      <Button
-                        text={`Участвую${
-                          events.firstEvent?.cost
-                            ? `, ${events.firstEvent?.cost}`
-                            : ""
-                        }`}
-                        className="button-light"
-                      />
+                        <NavLink
+                          to={'/pagecoorse/' + events.event._id+'_:id'}
+                        >
+                          {`Участвую${events.event.fullCoursePayCard.cost}${events.event.fullCoursePayCard.currency}`}
+                        </NavLink>
                     </>
                   ) : (
                     <></>
@@ -136,49 +156,64 @@ function EventsPage() {
                   <div className="events__text">
                     <nav className="categories__nav">
                       <ul className="nav__list categories__list">
-                        {EventsData.map((item) =>
-                          item.type === events.type ? (
+                        {masCoorse.map((value,index) =>{
+                          return(
                             <li
                               className="nav__item"
-                              key={item.key}
+                              key={index}
                             >
                               <div
-                                onClick={(e) => handleNavClick(e, item)}
+                                onClick={(e) => handleNavClick(e, value)}
                                 className="nav__link"
                               >
-                                {item.title}
+                                {value.mainTitle}
                               </div>
                             </li>
-                          ) : (
-                            ""
                           )
+                        }
+                          // item.type === events.type ? (
+                          //   <li
+                          //     className="nav__item"
+                          //     key={item.key}
+                          //   >
+                          //     <div
+                          //       onClick={(e) => handleNavClick(e, item)}
+                          //       className="nav__link"
+                          //     >
+                          //       {item.title}
+                          //     </div>
+                          //   </li>
+                          // ) : (
+                          //   ""
+                          // )
                         )}
                       </ul>
                     </nav>
                   </div>
 
                   <div
-                    className={`events__specialist ${
-                      events.type ? "events__specialist--active" : ""
-                    }`}
+                    className="events__specialist--active"
                   >
                     {events.event ? (
                       <>
                         <div className="events__specialist_info">
                           <span>
-                            {events.event?.surname}
-                            <br />
-                            {events.event?.name}
+                            {events.event?.speaker.name}
                           </span>
-                          <span>{events.event?.experience}</span>
-                          <span>{events.event?.city}</span>
+                          <span>
+                            {events.event?.speaker.profession}
+                          </span>
                         </div>
                         <div className="events__specialist_img">
-                          <img
-                            // src={events.event?.photo}
-                            src={annaImg}
-                            alt=""
-                          />
+                          {events.event.speaker.photo?
+                            <img
+                              // src={events.event?.photo}
+                              src={`${url}coorsefiles/${events.event.speaker.photo}`}
+                              alt=""
+                            />           
+                            :
+                            null               
+                          }
                         </div>
                       </>
                     ) : events.type ? (
@@ -204,10 +239,10 @@ function EventsPage() {
                 </div>
               </div>
             </div>
-          </div>
+            </div>
         </Carousel>
       </div>
-    </div>
+      </div>
   );
 }
 

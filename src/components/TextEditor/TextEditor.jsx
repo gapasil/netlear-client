@@ -48,7 +48,13 @@ function TextEditor({ onChange, isEditing, value }) {
       return;
     }
   };
-
+  if(!value){
+    return(
+      <div>
+        
+      </div>
+    )
+  }
   return (
     <>
       <ReactQuill

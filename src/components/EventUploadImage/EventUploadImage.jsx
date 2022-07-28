@@ -11,17 +11,8 @@ function EventUploadImage({ selector, action, popoverContentType, index = 1000 }
   const courseFiles = useSelector((state) => state.Temp.courseFiles);
   const ref = React.useRef();
   const dispatch = useDispatch();
-  React.useEffect(() => {
-    if (ref) {
-      console.log(ref);
-    }
-    // if (courseFiles) {
-    //   console.log('courseFiles', courseFiles);
-    // }
-  }, [ref, courseFiles]);
-
+  
   const onPickUpImage = (e) => {
-    console.log(selector, index);
     const file = e.target.files[0];
     const reader = new FileReader();
     const newAtion = action;

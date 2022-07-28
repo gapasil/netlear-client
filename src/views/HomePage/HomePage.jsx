@@ -45,7 +45,7 @@ function HomePage() {
           dots={false}
           arrows={false}
         >
-          <div className="slider__slide" onClick={() => console.log("123")}>
+          <div className="slider__slide">
             <div
               className="slider__item"
               style={{ backgroundImage: slides[value] }}

@@ -2,7 +2,12 @@
 @import '../../scss/base/constants';
 
 .deploy-course {
-  margin: 20px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 120px;
+  width: 100%;
+  background: rgba(204, 204, 204, 0.9);
 }
 
 

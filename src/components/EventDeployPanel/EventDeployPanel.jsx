@@ -34,46 +34,46 @@ function EventDeployPanel() {
   const dispatchUploadingVideoProcess = (percent, index) => {
     dispatch(setVideoUploadingProcess(percent, index));
   };
-  const dispatchVideoURI = (uri, index) => {
-    dispatch(setVideoURI(uri, index));
-  };
+  // const dispatchVideoURI = (uri, index) => {
+  //   dispatch(setVideoURI(uri, index));
+  // };
 
   // const dispatchVideoTranscodingStatus = (status, index) => {
   //   dispatch(setVideoTranscodingStatus(status, index));
   // };
 
-  const dispatchVideoURL = (url, index) => {
-    dispatch(setVideoURL(url, index));
-  };
+  // const dispatchVideoURL = (url, index) => {
+  //   dispatch(setVideoURL(url, index));
+  // };
 
-  React.useEffect(() => {
-    testOnLoad();
-  }, []);
+  // React.useEffect(() => {
+  //   testOnLoad();
+  // }, []);
 
-  React.useEffect(() => {
-    uploadingData.videoList.forEach((el, i) => {
-      if (el.videoURI && !el.videoURL && videoURLFlag) {
-        setVideoURLFlag(false);
-        testGetVimeoVidsURL(el.videoURI, dispatchVideoURL, i);
-      }
-    });
-  }, [uploadingData.videoList, videoURLFlag]);
+  // React.useEffect(() => {
+  //   uploadingData.videoList.forEach((el, i) => {
+  //     if (el.videoURI && !el.videoURL && videoURLFlag) {
+  //       setVideoURLFlag(false);
+  //       testGetVimeoVidsURL(el.videoURI, dispatchVideoURL, i);
+  //     }
+  //   });
+  // }, [uploadingData.videoList, videoURLFlag]);
 
-  React.useEffect(() => {
-    if (uploadingData.videoList.find((el) => !el.videoURL)) {
-      setTimeout(() => {
-        setVideoURLFlag(true);
-      }, 3000);
-    } else if (uploadingData.videoList.every((el) => el.videoURL)) {
-      uploadFullCourseData();
-    }
-  }, [!videoURLFlag]);
+  // React.useEffect(() => {
+  //   if (uploadingData.videoList.find((el) => !el.videoURL)) {
+  //     setTimeout(() => {
+  //       setVideoURLFlag(true);
+  //     }, 3000);
+  //   } else if (uploadingData.videoList.every((el) => el.videoURL)) {
+  //     uploadFullCourseData();
+  //   }
+  // }, [!videoURLFlag]);
 
-  React.useEffect(() => {
-    if (uploadingData.postedCourseId) {
-      uploadFullCourseImgs();
-    }
-  }, [uploadingData.postedCourseId]);
+  // React.useEffect(() => {
+  //   if (uploadingData.postedCourseId) {
+  //     uploadFullCourseImgs();
+  //   }
+  // }, [uploadingData.postedCourseId]);
 
   // React.useEffect(() => {
   //   if (uploadingData.videoList.find((el) => el.transcodingStatus !== 'complete')) {
@@ -84,22 +84,22 @@ function EventDeployPanel() {
   //   }
   // }, [!checkTranscodingFlag]);
 
-  const testOnLoad = () => {
-    uploadVideoFiles(uploadingData.videoList);
-  };
+  // const testOnLoad = () => {
+  //   uploadVideoFiles(uploadingData.videoList);
+  // };
 
-  const uploadVideoFiles = async (videoArray) => {
-    await videoArray.forEach(async (el, i) => {
-      testUploadVimeoVids(
-        el.video,
-        `${el.videoName}`,
-        `${el.videoDescription}`,
-        dispatchUploadingVideoProcess,
-        dispatchVideoURI,
-        i,
-      );
-    });
-  };
+  // const uploadVideoFiles = async (videoArray) => {
+  //   await videoArray.forEach(async (el, i) => {
+  //     testUploadVimeoVids(
+  //       el.video,
+  //       `${el.videoName}`,
+  //       `${el.videoDescription}`,
+  //       dispatchUploadingVideoProcess,
+  //       dispatchVideoURI,
+  //       i,
+  //     );
+  //   });
+  // };
 
   // const checkTranscodingVideoStatus = (videoURI) => {
   //   testCheckTranscodingVimeoVids(videoURI, setVideoTranscodingStatus);

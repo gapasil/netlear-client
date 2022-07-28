@@ -1,0 +1,122 @@
+@import '../../../../scss/abstract/mixins.scss';
+@import '../../../../scss/base/constants.scss';
+
+.parallax-banner {
+  width: 100%;
+
+  &__wrapper {
+    width: 1200px;
+  }
+}
+
+.parallax-banner-layer-0 {
+  //   background-size: contain !important;
+  //   background-position: top;
+  //   background-size: contain !important;
+  //   zoom: 1.5;
+}
+.slide-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 2rem 0;
+}
+
+.custom-class {
+  display: inline-block;
+}
+.custom-div {
+  display: flex;
+  flex-direction: column;
+}
+.parallax-outer {
+  position: relative;
+  will-change: transform;
+  display: flex;
+  justify-content: center;
+}
+
+.parallax-inner {
+  position: relative;
+  will-change: transform;
+}
+
+.parallax-banner-content {
+  width: 100%;
+  z-index: 1;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  //   flex-flow: row wrap;
+  //   align-items: center;
+  //   justify-content: center;
+  &__wrapper {
+    width: 1200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    @include media-mobile {
+      width: 95%;
+    }
+  }
+
+  &__quantity {
+    color: $color-text-light;
+    font-size: 14px;
+    text-transform: uppercase;
+    font-weight: 600;
+    span {
+      font-weight: 600;
+    }
+  }
+  &__title {
+    font-size: 36px;
+    font-weight: 600;
+    color: $color-text-light;
+    margin-bottom: 25px;
+    @include media-mobile {
+      font-size: 24px;
+    }
+  }
+  &__speaker-block {
+  }
+}
+
+.speaker-block {
+  color: $color-text-light;
+  &__name {
+    font-size: 36px;
+    font-weight: 600;
+    color: $color-text-light;
+    margin: 0;
+    @include media-mobile {
+      font-size: 24px;
+    }
+  }
+  &__description {
+    font-size: 16px;
+    font-weight: 600;
+  }
+}
+
+.text-styled {
+  &__bright {
+    color: $color-text-hovered-dark;
+    text-transform: uppercase;
+    &_large {
+      font-size: 28px;
+    }
+  }
+}
+
+.test-input {
+  background-color: transparent;
+  height: auto;
+  position: relative;
+  width: 100%;
+  border: 1px rgb(206, 206, 206) solid;
+}

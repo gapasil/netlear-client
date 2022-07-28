@@ -20,8 +20,11 @@ function CoursePaymentCard({ type = 'segment', dataIndex = 0, variant }) {
     (state) => state.eventRedactor.mainContent.data.fullCoursePayCard,
   );
   const dispatch = useDispatch();
+  let currencySymbol
 
-  const currencySymbol =
+  if(variant == "redactor"){
+
+    currencySymbol =
     data.currency === 'RUB'
       ? '₽'
       : data.currency === 'EUR'
@@ -29,6 +32,18 @@ function CoursePaymentCard({ type = 'segment', dataIndex = 0, variant }) {
       : data.currency === 'USD'
       ? '$'
       : '';
+  } else {
+
+    currencySymbol =
+    fullCourseData.currency === 'RUB'
+      ? '₽'
+      : fullCourseData.currency === 'EUR'
+      ? '€'
+      : fullCourseData.currency === 'USD'
+      ? '$'
+      : '';
+  }
+
 
   const onOpenFullPayCardSettings = () => {
     const selector = 'fullCoursePayCard';
@@ -48,6 +63,7 @@ function CoursePaymentCard({ type = 'segment', dataIndex = 0, variant }) {
   const onClickPayNow = () => {
     dispatch(setPaidVideo(true));
   };
+  console.log(fullCourseData);
   return (
     <div className="payment-card">
       {variant === 'redactor' && (
@@ -64,7 +80,7 @@ function CoursePaymentCard({ type = 'segment', dataIndex = 0, variant }) {
       {type === 'full' && <h2>Приобрести полный курс по сниженной цене</h2>}
       <div className="payment-card__cost-block">
         <h2 className="payment-card__cost">
-          {type === 'full' ? fullCourseData.costWithDiscount : data.cost} {currencySymbol}
+          {type === 'full' ? fullCourseData.cost : data.cost} {currencySymbol}
         </h2>
         {type === 'full' && (
           <>

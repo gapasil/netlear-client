@@ -1,0 +1,60 @@
+@import '../../scss/base/constants.scss';
+@import '../../scss/abstract/mixins.scss';
+
+.event-page {
+  .knop{
+    position: absolute;
+    left: 30px;
+    top: 180px;
+    z-index: 100;
+    border: 0px;
+    background: darkblue;
+    color: white;
+    border-radius: 5px;
+    width: 100px;
+    cursor: pointer;
+  }
+  .knop:hover{
+    background: rgb(0, 0, 180);
+  }
+  width: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  font-size: 16px;
+  margin-top: 200px;
+}
+.blockType {
+  padding-top: 250px;
+  padding-bottom: 100px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  &__container{
+    width: 80%;
+    display: flex;
+    justify-content: space-around;
+    button{
+      width: 25%;
+      margin-left: 20px;
+      margin-right: 20px;
+      height: 700px;
+      background: rgba(0, 0, 0, 0.658);
+      border: 1px solid rgba(128, 128, 128, 0.192);
+      cursor: pointer;
+      img{
+        height: 698px;
+        width: 100%;
+        opacity: 0.75;
+      }
+      img:hover{
+        opacity: 1;
+      }
+    }
+    button:hover{
+      -webkit-transform: scale(1.1);
+      -ms-transform: scale(1.1);
+      transform: scale(1.1)
+    }
+  }
+}

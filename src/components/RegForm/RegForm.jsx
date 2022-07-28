@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
 import "./RegForm.scss";
 import {AddUser} from "./funcReg"
+import { url } from "../../conf"
 
 const RegForm = ({callback,prop}) => {
   const [se,set] = useState("")
@@ -16,7 +17,7 @@ const RegForm = ({callback,prop}) => {
     phone:"notvisible",
     codePhone:"notvisible"
   })
-  
+
   ///принять ошибки из funcReg
   const [dataErr,setDataErr] = useState({
     name:"",
@@ -54,7 +55,7 @@ const RegForm = ({callback,prop}) => {
         period: 600
       }
     }
-    fetch("https://netlear-server.site/auth/veryfiphone",{
+    fetch(`${url}/auth/veryfiphone`,{
       method:"POST",
       body:JSON.stringify(nom),
       headers:{

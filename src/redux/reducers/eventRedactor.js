@@ -11,6 +11,7 @@ import getCurrentDate from '../../utils/getDate';
 const currentDate = getCurrentDate();
 
 const initialState = {
+  type:0,
   banner: {
     data: {
       title: 'Интернет-торговля товарами без штрафов: платежи, законы, правила, налоги',
@@ -41,7 +42,7 @@ const initialState = {
       vebinars: [
         {
           promoImg: promoImg,
-          format: 'recording',
+          format: 'В записи',
           date: currentDate,
           isPaid: true,
           cost: 9.99,
@@ -58,7 +59,7 @@ const initialState = {
         },
         {
           promoImg: promoImg,
-          format: 'live',
+          format: 'Онлайн трансляция',
           date: currentDate,
           isPaid: false,
           cost: 0,
@@ -74,7 +75,7 @@ const initialState = {
         },
         {
           promoImg: promoImg,
-          format: 'live',
+          format: 'Онлайн трансляция',
           date: currentDate,
           isPaid: false,
           cost: 0,
@@ -121,6 +122,13 @@ const initialState = {
 };
 
 const eventRedactor = (state = initialState, action) => {
+  if (action.type === 'SET_COORSE') {
+    const coorse = action.payload
+    console.log(coorse);
+    return {
+      ...coorse
+    };
+  }
   if (action.type === 'SET_BANNER_DATA') {
     const selector = action.selector;
     const data = action.data;
@@ -236,6 +244,7 @@ const eventRedactor = (state = initialState, action) => {
       return { ...el, currency: currency };
     });
     // console.log(newDataArray);
+    console.log(state);
     return {
       ...state,
       mainContent: {
@@ -258,7 +267,7 @@ const eventRedactor = (state = initialState, action) => {
     const currentCurrency = state.mainContent.data.fullCoursePayCard.currency;
     newDataArray.push({
       promoImg: promoImg,
-      format: 'recording',
+      format: 'В записи',
       date: currentDate,
       isPaid: true,
       cost: 9.99,
@@ -326,7 +335,6 @@ const eventRedactor = (state = initialState, action) => {
     const costSum = getFullCourseCost(courseArray);
     const fullCourseDiscount = state.mainContent.data.fullCoursePayCard.discount;
     const costWithDiscount = getFullCourseCostWithDiscount(costSum, fullCourseDiscount);
-    console.log(`calc cost:`, courseArray, costSum, costWithDiscount);
     return {
       ...state,
       mainContent: {

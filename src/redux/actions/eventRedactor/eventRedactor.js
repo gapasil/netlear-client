@@ -43,6 +43,14 @@ export const setMainContentSelectors = (selector, boolean) => ({
   boolean: boolean,
 });
 
+export const setCoorseRedux = (settingsObject) => {
+  console.log(settingsObject);
+  return{
+    type: 'SET_COORSE',
+    payload: settingsObject,
+  }
+};
+
 export const setMaunContentVebinarsSettings = (settingsObject, index) => ({
   type: 'SET_MAIN_CONTENT_VEBINARS_SETTINGS',
   payload: settingsObject,

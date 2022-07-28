@@ -1,8 +1,7 @@
 import axios from "axios";
-
+import { url } from "../../conf"
 export const AddUser = async (objUser,img,cb,cbb,method) =>{
   const date = Date.now()
-  const url = "https://netlear-server.site/"
 
   if(img){
     objUser.avatar = `${date}${img.name}`

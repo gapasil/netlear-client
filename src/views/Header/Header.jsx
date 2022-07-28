@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { useHistory, Link } from "react-router-dom";
+import { useHistory, Link, useLocation } from "react-router-dom";
 import "./Header.scss";
 import Modal from "../../components/Modal/Modal";
-import { ReactComponent as SearchIcon } from "../../assets/icons/header/search.svg";
-import { ReactComponent as LikeIcon } from "../../assets/icons/header/like.svg";
-import { ReactComponent as UserIcon } from "../../assets/icons/header/user.svg";
-import { ReactComponent as LogoImg } from "../../assets/icons/logo/edmed-logo-svg.svg";
-import HeaderImg from "../../assets/img/header/header_active_img.jpg";
+import SearchIcon  from "../../assets/icons/header/search.svg";
+import LikeIcon    from "../../assets/icons/header/like.svg";
+import UserIcon    from "../../assets/icons/header/user.svg";
+import LogoImg     from "../../assets/icons/logo/edmed-logo-svg.svg";
+import HeaderImg   from "../../assets/img/header/header_active_img.jpg";
 import { MenuData } from "./MenuData";
 import "../../App.scss";
 import LoginForm from "../../components/LoginForm/LoginForm";
@@ -31,9 +31,37 @@ let fillStyle = "#C7CEDB";
 
 function Header({auth}) {
   const [state, setState] = useState({ isBurgerOpen: false });
+  const [whiteBlackMenu,setWhiteBlackMenu] = useState(false)
+  const location = useLocation()
   const handleBurgerBtnClick = () => {
     setState({ isBurgerOpen: !state.isBurgerOpen });
   };
+
+  useEffect(()=>{
+    if(state.isBurgerOpen){
+      setWhiteBlackMenu(true)
+      style = "dark"
+    }else if(location.pathname == "/tariffs"){
+      setWhiteBlackMenu(true)
+      style = "dark"
+    }else if(location.pathname.length > 20){
+      setWhiteBlackMenu(true)
+      style = "dark"
+    }else if(location.pathname == "/coorse"){
+      setWhiteBlackMenu(true)
+      style = "dark"
+    }else if(location.pathname == "/events"){
+      setWhiteBlackMenu(true)
+      style = "dark"
+    }else if(location.pathname == "/event-redactor"){
+      setWhiteBlackMenu(true)
+      style = "dark"
+    }else{
+      setWhiteBlackMenu(false)
+      style = "light"
+    }
+  },[location.pathname,state])
+
   const [stateReg,setStateReg] = useState(null)
   const [like, setLike] = useState({ isLike: false });
   const handleLikeBtnClick = () => {
@@ -88,7 +116,6 @@ function Header({auth}) {
           <Link to={"/event-redactor"}>Создать свои курсы</Link>
         </Menu.Item>
         <Menu.Divider />
-
         <Menu.Item key="2">
           <Link to={"/"}>Уведомления</Link>
         </Menu.Item>
@@ -96,20 +123,20 @@ function Header({auth}) {
           <Link to={"/"}>Сообщения</Link>
         </Menu.Item>
         <Menu.Divider />
-        <Menu.Item key="4">
+        <Menu.Item key="8">
           <Link to={"/edit-user-profile"}>Настройки учетной записи</Link>
         </Menu.Item>
-        <Menu.Item key="2">
+        <Menu.Item key="7">
           <Link to={"/"}>Edmed coins</Link>
         </Menu.Item>
-        <Menu.Item key="2">
+        <Menu.Item key="6">
           <Link to={"/"}>История покупок</Link>
         </Menu.Item>
         <Menu.Divider />
-        <Menu.Item key="3">
+        <Menu.Item key="5">
           <Link to={"/"}>Помощь</Link>
         </Menu.Item>
-        <Menu.Item key="3">
+        <Menu.Item key="4">
           <Space>
             <Button onClick={onClickLogOut}>Выйти</Button>
           </Space>
@@ -151,20 +178,20 @@ function Header({auth}) {
           <Link to="/" className="header__logo">
             <LogoImg
               className="header__logo-img"
-              style={{ fill: state.isBurgerOpen ? "#24292F" : fillStyle }}
+              style={{ fill: whiteBlackMenu ? "#24292F" : fillStyle }}
             />
           </Link>
           <div className="header__right">
             <form className="search__form">
               <SearchIcon
                 className="search__button"
-                style={{ fill: state.isBurgerOpen ? "#161616" : color }}
+                style={{ fill: whiteBlackMenu ? "#161616" : color , marginTop:"0px"}}
               />
               <input
                 type="text"
                 placeholder="Поиск по сайту"
                 className={`search__input ${style} ${
-                  state.isBurgerOpen ? "search__input--active" : "hide"
+                  whiteBlackMenu ? "search__input--active" : "hide"
                 }`}
               />
             </form>
@@ -174,20 +201,19 @@ function Header({auth}) {
               // onClick={handleLikeBtnClick}
               onClick={showRegForm}
               style={
-                ({ stroke: state.isBurgerOpen ? "#161616" : color },
-                { stroke: like.isLike ? "red" : color })
+                ({ stroke: whiteBlackMenu ? like.isLike ? "red" : "#161616" : like.isLike ? "red" : color})
               }
             />
 
             {userData.authorization ? (
               <>
                 <Dropdown overlay={menu} trigger={["click"]}>
-                  <a
+                  <div
                     className="ant-dropdown-link ant-user-dropdown-link"
+                    style={{"cursor":"pointer"}}
                     onClick={(e) => e.preventDefault()}
                   >
                     {width >= 600 && userData.firstName}
-                    <DownOutlined />
                     <>
                       <ModalWindow
                         title={"Вы действительно хотите выйти?"}
@@ -214,14 +240,14 @@ function Header({auth}) {
                         </span>
                       </div>
                     </>
-                  </a>
+                  </div>
                 </Dropdown>
               </>
             ) : (
               <UserIcon
                 className="user"
                 onClick={showLoginForm}
-                style={{ stroke: state.isBurgerOpen ? "#161616" : color }}
+                style={{ stroke: whiteBlackMenu ? "#161616" : color }}
               />
             )}
 

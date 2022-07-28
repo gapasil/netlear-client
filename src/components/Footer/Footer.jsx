@@ -5,7 +5,7 @@ import mailImg from '../../assets/img/newsletter-mail.svg';
 import paymentImg from '../../assets/img/payment/full-pay.png';
 
 import FooterContentBlock from '../FooterContentBlock/FooterContentBlock';
-import Logo from '../Logo/Logo';
+import  LogoImg  from "../../assets/icons/logo/edmed-logo-svg.svg";
 
 import {
   contantUs,
@@ -27,6 +27,7 @@ import 'swiper/components/pagination/pagination.min.css';
 
 // import Swiper core and required modules
 import SwiperCore, { Pagination, Navigation, Autoplay } from 'swiper/core';
+import { Link } from 'react-router-dom';
 
 // install Swiper modules
 SwiperCore.use([Pagination, Navigation, Autoplay]);
@@ -73,9 +74,12 @@ function Footer() {
           </div>
         </div>
       </div> */}
-      <div className="footer__logo">
-        <Logo type={'footer'}/>
-      </div>
+      <Link to="/" className="header__logo">
+        <LogoImg
+          className="header__logo-img"
+          style={{ fill:"#24292F" }}
+       />
+      </Link>
       <div className="footer__content footer-content">
         <div className="footer-content__wrapper">
           <FooterContentBlock title={'Контакты'}>
@@ -115,32 +119,6 @@ function Footer() {
                 </div>
               );
             })}
-          </FooterContentBlock>
-          <FooterContentBlock title={'Новости'}>
-            <Swiper
-              direction={'vertical'}
-              pagination={{
-                clickable: true,
-                type: 'fraction',
-              }}
-              slidesPerView={2}
-              autoplay={{
-                delay: 3000,
-                disableOnInteraction: false,
-              }}
-              navigation={false}
-              spaceBetween={5}
-              className="news-swiper">
-              <SwiperSlide>news 1</SwiperSlide>
-              <SwiperSlide>news 2</SwiperSlide>
-              <SwiperSlide>news 3</SwiperSlide>
-              <SwiperSlide>news 4</SwiperSlide>
-              <SwiperSlide>news 5</SwiperSlide>
-              <SwiperSlide>news 6</SwiperSlide>
-              <SwiperSlide>news 7</SwiperSlide>
-              <SwiperSlide>news 8</SwiperSlide>
-              <SwiperSlide>news 9</SwiperSlide>
-            </Swiper>
           </FooterContentBlock>
         </div>
       </div>

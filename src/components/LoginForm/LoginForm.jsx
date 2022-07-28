@@ -3,9 +3,9 @@ import "./LoginForm.scss";
 import "../../fonts/iconsfont.scss";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchLogIn } from "../../redux/actions/Auth/Auth";
+import { url } from "../../conf"
 import Button from "../Button/Button";
-
-const URL = 'http://netlear-server.site/auth/'
+import store from "../../redux/store";
 
 const LoginForm = ({ history, callback, props}) => {
   const [email, setEmail] = useState("");
@@ -13,7 +13,7 @@ const LoginForm = ({ history, callback, props}) => {
   const [fail, setFail] = useState("")
   const dispatch = useDispatch();
   const { isAuth } = useSelector((state) => state.Auth);
-  const url = "https://netlear-server.site/"
+  const user = useSelector(state => state.Auth)
 
   React.useEffect(() => {
     if (isAuth) {
@@ -39,7 +39,6 @@ const LoginForm = ({ history, callback, props}) => {
           setFail(result.message)
         }else{
           localStorage.setItem('token',result.token)
-          localStorage.setItem("email",email)
           props()
         }
       })
@@ -62,7 +61,6 @@ const LoginForm = ({ history, callback, props}) => {
           setFail(result.message)
         }else{
           localStorage.setItem("token",result.token)
-          localStorage.setItem("phoneNumber",email)
           props()
         }
       })
@@ -80,10 +78,43 @@ const LoginForm = ({ history, callback, props}) => {
   const onFinishFailed = (errorInfo) => {
     console.log("Failed:", errorInfo);
   };
+  let getUserGoogle = () =>{
+    let objUser = JSON.parse(JSON.stringify(user))
+
+    fetch(`https://oauth2.googleapis.com/tokeninfo?id_token=${localStorage.getItem("google")}`)
+    .then((res)=>res.json())
+    .then((result)=>{
+      if(result.error){
+        localStorage.clear();
+        store.dispatch({type:'SET_LOGOUT'})
+        return
+      }
+      objUser.lastname  = result.family_name
+      objUser.firstname = result.given_name
+      objUser.picture   = result.picture
+      objUser.email     = result.email
+      createGoogleUser(objUser)
+      const res = {...objUser,authorization:true} 
+      store.dispatch({type:'SET_USER_DATA',payload:res})
+    })
+  }
+
+  let createGoogleUser = (objUser) =>{
+    fetch(`${url}auth/googleverify`,{
+      method:"POST",
+      headers: {
+        'Content-Type': 'application/json;charset=utf-8',
+      },
+      body: JSON.stringify({...objUser,value:localStorage.getItem("google")})
+    })
+    .then((res)=>res.json())
+    .then((result)=>localStorage.setItem("token",result.token))
+  }
 
   const handleSubmitGoogleForm = () => {
     let tokenSave = (e) =>{
       localStorage.setItem('google',e.credential)
+      getUserGoogle()
       props()
     }
     window.google.accounts.id.initialize({

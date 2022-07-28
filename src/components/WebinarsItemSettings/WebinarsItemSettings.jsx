@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './WebinarsItemSettings.scss';
 
 import {
@@ -30,14 +30,15 @@ function WebinarsItemSettings() {
   const data = useSelector(
     (state) => state.eventRedactor.mainContent.data.vebinars[index ? index : 0],
   );
-  const [isPaid, seIsPaid] = React.useState(data.isPaid || false);
+  const [isPaid, seIsPaid] = React.useState(data.isPaid || false); 
   const [format, setFormat] = React.useState(data.format || 'recording');
   const [date, setDate] = React.useState(data.date || null);
   const [cost, setCost] = React.useState(data.cost || 0);
   const [currency, setCurrency] = React.useState(data.currency || 'RUB');
   const [promoCode, setPromoCode] = React.useState(data.promocode || '');
   const [personalDiscount, setPersonalDiscount] = React.useState(data.personalDiscount || 0);
-  const [video, setVideo] = React.useState(data.video || null);
+  const [videoPreviured, setVideoPreviured] = useState(data.video || null);
+  const [video, setVideo] = useState(data.video || null);
   const [videoName, setVideoName] = React.useState(data.videoName || null);
   const [videoDescription, setVideoDescription] = React.useState(data.videoDescription || null);
 
@@ -83,11 +84,20 @@ function WebinarsItemSettings() {
     setPersonalDiscount(e.target.value);
   };
 
-  const onUploadVideo = (e) => {
-    // console.log(e);
-    // console.log(video);
-    setVideo(e);
-    // testUploadVimeoVids(e, 'test-name', 'test-description');
+  const onUploadVideo = async(e) => {
+
+    setVideo(e)
+
+    if(!e||!e.type.match("video")){
+      return
+    }
+    const reader = new FileReader()
+
+    reader.onload = e =>{
+      setVideoPreviured(e.target.result)
+    }
+
+    reader.readAsDataURL(e) 
   };
 
   const onChangeVideoName = (e) => {
@@ -102,7 +112,7 @@ function WebinarsItemSettings() {
 
   const setAllSettingsDefault = () => {
     seIsPaid(true);
-    setFormat(data.format || 'recording');
+    setFormat(data.format || 'В записи');
     setDate(data.date || null);
     setCost(data.cost || 0);
     setCurrency(data.currency || 'RUB');
@@ -113,7 +123,7 @@ function WebinarsItemSettings() {
     setVideoDescription(data.videoDescription || '');
   };
 
-  const onSaveItemSettings = async () => {
+  const onSaveItemSettings = () => {
     if (isPaid) {
       const dataObj = {
         isPaid,
@@ -127,8 +137,8 @@ function WebinarsItemSettings() {
         videoName,
         videoDescription,
       };
-      await dispatch(setMaunContentVebinarsSettings(dataObj, index));
-      await dispatch(setFullCourseCost());
+      dispatch(setMaunContentVebinarsSettings(dataObj, index));
+      dispatch(setFullCourseCost());
     } else {
       const dataObj = {
         isPaid,
@@ -142,8 +152,8 @@ function WebinarsItemSettings() {
         videoName,
         videoDescription,
       };
-      await dispatch(setMaunContentVebinarsSettings(dataObj, index));
-      await dispatch(setFullCourseCost());
+      dispatch(setMaunContentVebinarsSettings(dataObj, index));
+      dispatch(setFullCourseCost());
     }
     setAllSettingsDefault();
     dispatch(setSideMenuFalse());
@@ -155,16 +165,20 @@ function WebinarsItemSettings() {
 
   return (
     <div className="webinars-item-settings-block settings-block">
+      {format === "recording" && (
+        <video src={videoPreviured} width="300px" controls></video>
+      )}
+
       <ConfigProvider locale={ruRU}>
         <div className="settings-block-type-1">
           <h4>Выберите тип предоставляемого контента</h4>
           <Select defaultValue={format} onChange={onChangeSelectFormat}>
-            <Select.Option value="recording">В записи</Select.Option>
-            <Select.Option value="live">Онлайн трансляция</Select.Option>
+            <Select.Option value="В записи">В записи</Select.Option>
+            <Select.Option value="Онлайн трансляция">Онлайн трансляция</Select.Option>
           </Select>
-          {format === 'recording' && (
+          {format === 'В записи' && (
             <>
-              <Upload action={onUploadVideo} listType="video" maxCount={1}>
+              <Upload action={onUploadVideo} listType="video" maxCount={1} onRemove={()=>setVideo("")}>
                 <Button>
                   <UploadOutlined /> Загрузить видео
                 </Button>
@@ -172,7 +186,7 @@ function WebinarsItemSettings() {
             </>
           )}
         </div>
-        {format === 'recording' && (
+        {format === 'В записи' && (
           <div className="settings-block-type-1">
             <h4>Введите название и краткое описание видео</h4>
             <p>Это обязательный пункт</p>
@@ -193,7 +207,7 @@ function WebinarsItemSettings() {
           </div>
         )}
         <div className="settings-block-type-1">
-          {format === 'recording' ? (
+          {format === 'В записи' ? (
             <>
               <h4>Выберите дату появления видео в доступе</h4>
               <p>Это необязательный пункт, если дата не выбрана, то видео будет доступно сразу</p>

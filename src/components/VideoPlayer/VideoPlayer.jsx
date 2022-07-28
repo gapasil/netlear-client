@@ -5,7 +5,7 @@ import ReactPlayer from 'react-player';
 
 function VideoPlayer({ className = 'video', videoURL }) {
   return (
-    <ReactPlayer className={className} url={videoURL} controls={true} light={true} loop={true} />
+    <ReactPlayer className={className} url={videoURL} controls={true} loop={true} width="100%"/>
   );
 }
 
