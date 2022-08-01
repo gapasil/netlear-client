@@ -5,7 +5,7 @@ import mailImg from '../../assets/img/newsletter-mail.svg';
 import paymentImg from '../../assets/img/payment/full-pay.png';
 
 import FooterContentBlock from '../FooterContentBlock/FooterContentBlock';
-import  LogoImg  from "../../assets/icons/logo/edmed-logo-svg.svg";
+import  { ReactComponent as LogoImg }  from "../../assets/icons/logo/edmed-logo-svg.svg";
 
 import {
   contantUs,

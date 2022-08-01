@@ -92,7 +92,7 @@ function App({ history }) {
     if(google){
       let objUser = JSON.parse(JSON.stringify(user))
 
-      fetch(`https://oauth2.googleapis.com/tokeninfo?id_token=${value}`,{signal:abortController.signal})
+      fetch(`https://oauth2.googleapis.com/tokeninfo?id_token=${google}`,{signal:abortController.signal})
       .then((res)=>res.json())
       .then((result)=>{
         if(result.error){

@@ -1,6 +1,6 @@
 import React from "react";
 import "./LatestArticles.scss";
-import Arrow  from "../../assets/icons/articles/arrow.svg";
+import { ReactComponent as Arrow } from "../../assets/icons/articles/arrow.svg";
 import img    from "../../assets/img/slider/latest_articles_img.jpg";
 
 const LatestArticles = () => {
