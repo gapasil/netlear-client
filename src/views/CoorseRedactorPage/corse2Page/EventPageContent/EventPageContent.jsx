@@ -81,7 +81,7 @@ function EventPageContent2({ variant }) {
   }
 
   useEffect(()=>{
-    setVideoPreviured(url +"coorsefiles/"+ eventRedactor.aboutSpeaker.data.video)
+    setVideoPreviured(url +"coorsefiles"+ eventRedactor.aboutSpeaker.data.video)
   },[])
 
   return (

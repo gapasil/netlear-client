@@ -100,7 +100,11 @@ const LoginForm = ({ history, callback, props}) => {
   }
 
   let createGoogleUser = () =>{
-    fetch(`${url}auth/googleverify`,{
+    fetch(`${url}auth/googleauth`,{
+      method: "POST",
+        headers: {
+          'Content-Type': 'application/json;charset=utf-8',
+        },
       body: JSON.stringify({google: localStorage.getItem("google")})
     })
     .then((res)=>res.json())

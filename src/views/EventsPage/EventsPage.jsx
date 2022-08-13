@@ -35,15 +35,15 @@ function EventsPage() {
     });
   };
 
-  // useEffect(()=>{
-  //   fetch(`${url}post/`,{
-  //       headers: {
-  //         "Authorization": `Bearer ${localStorage.getItem("token")}`
-  //       },
-  //   })
-  //   .then((res)=>res.json())
-  //   .then((result)=>setCoorse(result))
-  // },[])
+   useEffect(()=>{
+     fetch(`${url}post/`,{
+         headers: {
+           "Authorization": `Bearer ${localStorage.getItem("token")}`
+         },
+     })
+     .then((res)=>res.json())
+     .then((result)=>setCoorse(result))
+   },[])
 
   return (
     <div className="events-page">

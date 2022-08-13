@@ -74,7 +74,7 @@ function EventPageAboutSpeaker({ variant }) {
             {variant == "redactor"? 
               <img src={data.img} alt="" />
               :
-              <img src={`${url}coorsefiles/${data.img}`} alt="" />
+              <img src={`${url}coorsefiles${data.img}`} alt="" />
             }
           </div>
 
@@ -155,7 +155,7 @@ function EventPageAboutSpeaker({ variant }) {
           </div>
           :
           variant !== "redactor"?
-          <VideoPlayer videoURL={`${url}coorsefiles/${data.video}`} />
+          <VideoPlayer videoURL={`${url}coorsefiles${data.video}`} />
           :
           null
         }

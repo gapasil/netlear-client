@@ -142,7 +142,7 @@ function EventPageAboutSpeaker3({ variant }) {
           </div>
           :
           variant !== "redactor"?
-          <VideoPlayer videoURL={`${url}coorsefiles/${data.video}`} />
+          <VideoPlayer videoURL={`${url}coorsefiles${data.video}`} />
           :
           null
         }

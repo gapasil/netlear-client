@@ -103,10 +103,24 @@ function App({ history }) {
           objUser.firstname = result.given_name
           objUser.picture   = result.picture
           objUser.email     = result.email
+          createGoogleUser(objUser)
           const res = {...objUser,authorization:true} 
           store.dispatch({type:'SET_USER_DATA',payload:res})
         }
       })
+
+  let createGoogleUser = () =>{
+    fetch(`${url}auth/googleauth`,{
+      method: "POST",
+        headers: {
+          'Content-Type': 'application/json;charset=utf-8',
+        },
+      body: JSON.stringify({google: localStorage.getItem("google")})
+    })
+    .then((res)=>res.json())
+    .then((result)=>localStorage.setItem("token",result.token))
+    }
+
     } else {
       fetch(`${url}useroute/user/`,{
         method:"POST",
