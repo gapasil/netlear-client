@@ -147,13 +147,39 @@ function App({ history }) {
       })
     }
     return () => { abortController.abort() }
-  },[setList])
+  },[])
+
+  const getUser = () =>{
+    fetch(`${url}useroute/user/`,{
+      method:"POST",
+      headers: {
+        'Content-Type': 'application/json;charset=utf-8',
+        "Authorization":`Bearer ${token}`
+      },
+      signal:abortController.signal
+    })
+    .then(responce =>{
+      return responce.json()
+    })
+    .then(result => {
+      if(result.message){
+      }else{
+        let res
+        if(result.user.avatar){
+          res = {...result.user,authorization:true,picture:`${url}uploads/${result.user.avatar}`} 
+        } else {
+          res = {...result.user,authorization:true,picture:"default"} 
+        }
+        store.dispatch({type:'SET_USER_DATA',payload:res})
+      }
+    })
+  }
 
   return (
     <div className="App">
       <div className="wrapper">
         <Router>
-          <Header auth={()=>setList(Math.random())}/>
+          <Header auth={()=>getUser()}/>
           <Switch>
             <Route exact path="/" component={HomePage} />
             <Route exact path="/reg-page" component={RegForm} />

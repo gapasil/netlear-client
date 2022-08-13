@@ -59,17 +59,22 @@ function EventPage({ variant = 'static' }) {
         },
       })
       .then((res)=>res.json())
-      .then((result)=> coorse = result )
+      .then((result)=> {coorse = result} )
+      .then(()=>{
+        console.log(coorse);
 
-      if(coorse.message){
-        alert(coorse.message)
-      }
+        if(coorse.message){
+          alert(coorse.message)
+        }
+  
+        for(let key of coorse){
+          console.log(key);
+          if(key._id == id){
+            setCoorse(key)
+          } 
+        }
+      })
 
-      for(let key of coorse){
-        if(key._id == id){
-          setCoorse(key)
-        } 
-      }
     } else {
       const initialState = {
         type:0,
@@ -188,6 +193,7 @@ function EventPage({ variant = 'static' }) {
 
   useEffect(()=>{
     if(coorse){
+        console.log(coorse);
         const coorsee = coorse
         const masVebin = []
         

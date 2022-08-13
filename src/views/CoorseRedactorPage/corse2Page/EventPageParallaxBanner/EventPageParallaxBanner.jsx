@@ -12,11 +12,15 @@ import EventUploadImage from '../../../../components/EventUploadImage/EventUploa
 import { useDispatch, useSelector } from 'react-redux';
 import { setBannerData, setBannerSelectors } from '../../../../redux/actions/eventRedactor/eventRedactor';
 import { bannerPopoversContent } from '../../../../utils/eventPopoverContent/bannerPopoversContent';
+import { url } from '../../../../conf';
 
 function EventPageParallaxBanner2({ variant }) {
   const dispatch = useDispatch();
   const { data, selectors } = useSelector((state) => state.eventRedactor.banner);
+  
   const { title, speakerName, speakerShortDescription, backgroundImg } = bannerPopoversContent;
+
+  let objBanner
 
   const onSelectInputValue = (e) => {
     const selector = e.target.attributes.selector.nodeValue;
@@ -24,18 +28,26 @@ function EventPageParallaxBanner2({ variant }) {
     dispatch(setBannerData(selector, '', data));
   };
 
-  console.log(data);
+  if(variant == "redactor"){
+    objBanner = {
+      image: data.backgroundImg || promoImg,
+      amount: 1,
+      children: '',
+    }
+  } else {
+    objBanner = {
+      image:`${url}coorsefiles/${data.backgroundImg}`,
+      amount: 1,
+      children: '',
+    }
+  }
 
   return (
     <div className="parallax-banner">
       <ParallaxBanner
         className=""
         layers={[
-          {
-            image: data.backgroundImg || promoImg,
-            amount: 1,
-            children: '',
-          },
+          objBanner
         ]}
         style={{
           minHeight: '400px',

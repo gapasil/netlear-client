@@ -35,7 +35,7 @@ function EventPageParallaxBanner({ variant }) {
     }
   } else {
     objBanner = {
-      image:`${url}coorsefiles${dataBanner.backgroundImg}`,
+      image:`${url}coorsefiles/${dataBanner.backgroundImg}`,
       amount: 1,
       children: '',
     }

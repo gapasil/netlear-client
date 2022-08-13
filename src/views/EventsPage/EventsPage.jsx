@@ -17,13 +17,16 @@ function EventsPage() {
   const [events, setEvents] = useState({ type: "", event: "", firstEvent: "" });
   const [masCoorse, setCoorse]  = useState([])
   const dispatch = useDispatch();
+
   const [listItemClass, setListItemClass] = useState({
     previousItem: null,
   });
+
   const handleRadioClick = (e) => {
     const firstOne = EventsData.find((item) => item.type === e.target.id);
     setEvents({ type: e.target.id, event: "", firstEvent: firstOne });
   };
+
   const handleNavClick = (e, item) => {
     listItemClass.previousItem?.classList.remove("nav__link--active");
     setListItemClass({ previousItem: e.target });
@@ -44,6 +47,10 @@ function EventsPage() {
      .then((res)=>res.json())
      .then((result)=>setCoorse(result))
    },[])
+
+  //  useEffect(()=>{
+  //   console.log(events.event)
+  //  },[events])
 
   return (
     <div className="events-page">
